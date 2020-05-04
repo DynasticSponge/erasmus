@@ -4,7 +4,7 @@ erasmus is a C++ library for miscellaneous text manipulation.
 
 ## Stage/Release
 
-### Development Complete
+**Development Complete:**
 - string url encode/decode
 - string base64 encode/decode
 - string backslash escape replacement
@@ -13,7 +13,7 @@ erasmus is a C++ library for miscellaneous text manipulation.
 - extract double-quoted sub-string
 - char/int to hex string
 
-### In Development
+**In Development:**
 - string Deflate compress/decompress
 
 ## Build
@@ -61,3 +61,6 @@ Thanks!
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
+
+## Project Namesake
+Learn about: [Erasmus of Rotterdamn](https://en.wikipedia.org/wiki/Erasmus)
