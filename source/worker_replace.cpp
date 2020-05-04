@@ -1,0 +1,113 @@
+//
+// worker_replace.cpp
+// ~~~~~~~~~~~~~~~~~~
+//
+// Author: Joseph Adomatis
+// Copyright (c) 2020 Joseph R Adomatis (joseph dot adomatis at gmail dot com)
+//
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+#include <string>
+
+#include "../headers/erasmus_namespace.hpp"
+#include "../headers/worker_replace.hpp"
+
+using namespace erasmus;
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// global variable definitions
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// global function definitions
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// erasmus::workerReplace member definitions
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+///////////////////////////////////////////////////////////////////////////////
+// Constructors
+///////////////////////////////////////////////////////////////////////////////
+
+workerReplace::workerReplace()
+{
+
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// erasmus::workerReplace::escapeReplace
+///////////////////////////////////////////////////////////////////////////////
+
+bool workerReplace::escapeReplace(const std::string& original, std::string& revised)
+{
+    bool returnValue{true};
+    size_t maxBound{original.size()};
+    size_t maxSlashBound{(original.size() - 1)};
+    std::string bldStr;
+    
+    for(size_t index = 0; index < maxBound && returnValue; index++)
+    {
+        char c0{original[index]};
+        
+        // check if backslash
+        if (c0 == '\\')
+        {
+            // verify backslash not last char in string
+            if(index < maxSlashBound)
+            {
+                // backslash not the last char, get next char and append to bldStr
+                char c1{original[index + 1]};
+                bldStr.push_back(c1);
+                index += 1;
+            }
+            else
+            {
+                // backslash is last char 
+                returnValue = false;
+            }                       
+        }
+        else
+        {
+            // char isnt backslash, just append it to bldStr
+            bldStr.push_back(c0);
+        }
+    }
+
+    if(returnValue)
+    {
+        revised = std::move(bldStr);
+    }
+
+    return(returnValue);
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// erasmus::workerReplace::tokenReplace
+///////////////////////////////////////////////////////////////////////////////
+
+bool workerReplace::tokenReplace(std::string& source, const std::string& oldToken, const std::string& newToken)
+{
+
+    bool returnValue{true};
+    if(oldToken != newToken)
+    {
+        size_t oldTokenSize = oldToken.size();
+        size_t oldTokenIndex{source.find(oldToken)};
+        while(oldTokenIndex != std::string::npos)
+        {
+            source.replace(oldTokenIndex, oldTokenSize, newToken);
+            oldTokenIndex = source.find(oldToken);    
+        }
+    }    
+    return(returnValue);
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// Deconstructor
+///////////////////////////////////////////////////////////////////////////////
+
+erasmus::workerReplace::~workerReplace()
+{
+
+}

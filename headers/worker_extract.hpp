@@ -1,0 +1,37 @@
+//
+// worker_extract.hpp
+// ~~~~~~~~~~~~~~~~~~
+//
+// Author: Joseph Adomatis
+// Copyright (c) 2020 Joseph R Adomatis (joseph dot adomatis at gmail dot com)
+//
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+#ifndef WORKER_EXTRACT_HPP
+#define WORKER_EXTRACT_HPP
+
+#include <string>
+
+#include "erasmus_namespace.hpp"
+
+class erasmus::workerExtract
+{
+public:
+    explicit workerExtract();
+    explicit workerExtract(erasmus::director*);
+    bool quotedExtract(const std::string&, std::string&, bool);
+    ~workerExtract();
+protected:
+private:
+    ///////////////////////////////////////////////////////////////////////////////
+    // Private Functions
+    ///////////////////////////////////////////////////////////////////////////////
+    bool initReplaceWorker();
+    ///////////////////////////////////////////////////////////////////////////////
+    // Private Properties
+    ///////////////////////////////////////////////////////////////////////////////
+    erasmus::director *director;
+    erasmus::workerReplace *replaceWorker;
+};
+
+#endif
