@@ -8,7 +8,7 @@ STATICDIR = ${STARTDIR}libraries/
 OBJECTS = $(wildcard ${OBJECTDIR}*.o)
 SOURCES = $(wildcard ${SOURCEDIR}*.cpp)
 STATICS = $(wildcard ${STATICSDIR}*.a)
-LIBRARIES = 
+LIBRARIES =
 
 compile: ${SOURCES}
 	$(CXX) -std=c++17 -c ${SOURCES} -I ${HEADERDIR}
@@ -31,6 +31,7 @@ postop:
 clean:
 	rm ${OBJECTDIR}*.*
 	rm $(OUTPUTDIR)*.*
+	clear
 
 debug:
 	$(MAKE) dcompile

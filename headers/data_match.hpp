@@ -11,6 +11,7 @@
 #define DATA_MATCH_HPP
 
 #include <string>
+#include <string_view>
 #include <vector>
 
 #include "erasmus_namespace.hpp"
@@ -18,19 +19,20 @@
 class erasmus::dataMatch
 {
 public:
-    dataMatch(const std::string&, size_t, size_t);
-    bool addChar(char);
+    dataMatch(size_t, size_t, size_t);
     size_t getDistance();
     size_t getLength();
+    size_t getPrevious();
+    size_t getStart();
+    void postBack(size_t);
+    void trimBack(size_t);
+    void trimFront(size_t);
     ~dataMatch();
 protected:
 private:
-    bool active;
-    size_t matchEnd;
     size_t matchStart;
-    size_t previousStart;
-    std::string matchString;
-    const std::string& source;
+    size_t matchLength;
+    size_t firstStart;
 };
 
 #endif

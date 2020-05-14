@@ -17,7 +17,7 @@
 namespace erasmus
 {
     class dataMatch;
-    class dataWindow;
+    class dataNode;
     class director;
     class workerBase64;
     class workerCase;

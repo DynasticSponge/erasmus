@@ -63,4 +63,4 @@ Thanks!
 [MIT](https://choosealicense.com/licenses/mit/)
 
 ## Project Namesake
--   Learn about: [Erasmus of Rotterdamn](https://en.wikipedia.org/wiki/Erasmus)
+-   Learn about: [Erasmus of Rotterdam](https://en.wikipedia.org/wiki/Erasmus)
