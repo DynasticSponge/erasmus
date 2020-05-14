@@ -38,17 +38,26 @@ workerCase::workerCase()
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-// erasmus::workerCase::toLower
+// erasmus::workerCase::setCase
 ///////////////////////////////////////////////////////////////////////////////
 
-bool workerCase::toLower(const std::string& original, std::string& revised)
+bool workerCase::setCase(const std::string& original, std::string& revised, bool upper)
 {
     bool returnValue{true};
     std::string bldStr{original};
     
     try
     {
-        std::transform(bldStr.begin(), bldStr.end(), bldStr.begin(), [](unsigned char c){return(std::tolower(c));});
+        auto lFunc = [](unsigned char c){return(std::tolower(c));};
+        auto uFunc = [](unsigned char c){return(std::toupper(c));};
+        if(upper)
+        {
+            std::transform(bldStr.begin(), bldStr.end(), bldStr.begin(), uFunc);
+        }
+        else
+        {
+            std::transform(bldStr.begin(), bldStr.end(), bldStr.begin(), lFunc);
+        }       
     }
     catch(const std::exception& e)
     {
@@ -64,28 +73,22 @@ bool workerCase::toLower(const std::string& original, std::string& revised)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
+// erasmus::workerCase::toLower
+///////////////////////////////////////////////////////////////////////////////
+
+bool workerCase::toLower(const std::string& original, std::string& revised)
+{
+    bool returnValue{this->setCase(original, revised, false)};
+    return(returnValue);
+}
+
+///////////////////////////////////////////////////////////////////////////////
 // erasmus::workerCase::toUpper
 ///////////////////////////////////////////////////////////////////////////////
 
 bool workerCase::toUpper(const std::string& original, std::string& revised)
 {
-    bool returnValue{true};
-    std::string bldStr{original};
-    
-    try
-    {
-        std::transform(bldStr.begin(), bldStr.end(), bldStr.begin(), [](unsigned char c){return(std::toupper(c));});
-    }
-    catch(const std::exception& e)
-    {
-        returnValue = false;
-    }
-    
-    if(returnValue)
-    {
-        revised = std::move(bldStr);
-    }
-    
+    bool returnValue{this->setCase(original, revised, true)};
     return(returnValue);
 }
 

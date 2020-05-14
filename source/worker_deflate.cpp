@@ -87,15 +87,12 @@ void workerDeflate::cullMatches()
     auto matchIter{this->matchList.begin()};
     while(matchIter != this->matchList.end())
     {
-        size_t saveIndex{matchIter->first};
-        
-        size_t maxNextStart{matchIter->first + (matchIter->second->getLength() + 2)};
-        size_t nextStart{matchIter->first};
-        size_t maxEnd{matchIter->first + (matchIter->second->getLength() - 1)};
-        
         auto searchIter{std::next(matchIter, 1)};
         if(searchIter != this->matchList.end())
         {
+            size_t maxNextStart{matchIter->first + (matchIter->second->getLength() + 2)};
+            size_t nextStart{matchIter->first};
+            size_t maxEnd{matchIter->first + (matchIter->second->getLength() - 1)};
             while(searchIter->first <= maxNextStart){
                 size_t curEnd{searchIter->first + (searchIter->second->getLength() - 1)};
                 if(curEnd > maxEnd)
@@ -127,6 +124,7 @@ void workerDeflate::cullMatches()
             searchIter++;
             if(searchIter != this->matchList.end())
             {
+                size_t saveIndex{matchIter->first};
                 matchIter = this->trimTwoFer(matchIter);
                 if(matchIter != this->matchList.end())
                 {
@@ -374,17 +372,8 @@ void workerDeflate::dumpTree(size_t block)
         {
             continue;
         }
-        std::cout.width(16);
-        tempStr.clear();
-        tempStr.append("Code: ");
-        tempStr.append(std::to_string(i));
-        std::cout << tempStr;
 
-        std::cout.width(16);
-        tempStr.clear();
-        tempStr.append("Count: ");
-        tempStr.append(std::to_string(this->lenNumCounts[block][i]));
-        std::cout << tempStr;
+        this->dumpTreeLineLead(tempStr, block, i);
 
         std::cout.width(32);
         tempStr.clear();
@@ -408,17 +397,8 @@ void workerDeflate::dumpTree(size_t block)
         {
             continue;
         }
-        std::cout.width(16);
-        tempStr.clear();
-        tempStr.append("Code: ");
-        tempStr.append(std::to_string(i));
-        std::cout << tempStr;
-
-        std::cout.width(16);
-        tempStr.clear();
-        tempStr.append("Count: ");
-        tempStr.append(std::to_string(this->distNumCounts[block][i]));
-        std::cout << tempStr;
+        
+        this->dumpTreeLineLead(tempStr, block, i);
 
         std::cout.width(32);
         tempStr.clear();
@@ -435,6 +415,25 @@ void workerDeflate::dumpTree(size_t block)
         std::cout << std::endl;
     }    
     return;
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// erasmus::workerDeflate::dumpTreeLineLead
+///////////////////////////////////////////////////////////////////////////////
+
+void workerDeflate::dumpTreeLineLead(std::string &tempStr, size_t block, size_t i)
+{
+    std::cout.width(16);
+    tempStr.clear();
+    tempStr.append("Code: ");
+    tempStr.append(std::to_string(i));
+    std::cout << tempStr;
+
+    std::cout.width(16);
+    tempStr.clear();
+    tempStr.append("Count: ");
+    tempStr.append(std::to_string(this->lenNumCounts[block][i]));
+    std::cout << tempStr;
 }
 
 ///////////////////////////////////////////////////////////////////////////////

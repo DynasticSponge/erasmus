@@ -36,7 +36,7 @@ typedef std::pair<unsigned short, unsigned short> codePair;
 class erasmus::workerDeflate
 {
 public:
-    workerDeflate(std::string);
+    explicit workerDeflate(std::string);
     std::string deflate();
     std::string inflate();
     ~workerDeflate();
@@ -52,6 +52,7 @@ private:
     size_t dumpMatch(size_t, size_t, size_t);
     void dumpMatchList();
     void dumpTree(size_t);
+    void dumpTreeLineLead(std::string&, size_t, size_t);
     codePair getDistCode(size_t);
     codePair getLenCode(size_t);
     void generateModified();

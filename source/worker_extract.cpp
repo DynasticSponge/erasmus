@@ -72,8 +72,6 @@ bool workerExtract::initReplaceWorker()
 bool workerExtract::quotedExtract(const std::string& original, std::string& revised, bool escape)
 {
     bool returnValue{true};
-    bool useReplaceWorker{this->initReplaceWorker()};
-
     size_t dblQuoteStartIndex{original.find_first_of('\"')};
     if(dblQuoteStartIndex != std::string::npos)
     {
@@ -93,6 +91,7 @@ bool workerExtract::quotedExtract(const std::string& original, std::string& revi
             if(escape)
             {
                 std::string extractFinal;
+                bool useReplaceWorker{this->initReplaceWorker()};
                 bool replaceSuccess{true};
                 
                 if(useReplaceWorker)

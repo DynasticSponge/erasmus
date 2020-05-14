@@ -23,6 +23,7 @@ public:
     ~workerCase();
 protected:
 private:
+    bool setCase(const std::string&, std::string&, bool);
 };
 
 #endif
