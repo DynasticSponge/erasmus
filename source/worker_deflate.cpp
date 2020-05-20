@@ -1024,10 +1024,7 @@ void workerDeflate::generateTree()
                 else
                 {
                     dataNode newNode = dataNode();
-                    dataNode newNode2 = dataNode();
-                    newNode2.kids.push_back(node1);
-                    newNode2.hasKids = 1;
-                    newNode.kids.push_back(newNode2);
+                    newNode.kids.push_back(node1);
                     newNode.hasKids = 1;
                     this->codeBuilder.insert(newNode);
                 }               
